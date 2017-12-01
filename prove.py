@@ -9,28 +9,28 @@ if len(sys.argv) != 2:
 
 data = filereader(sys.argv[1])
 
-info = []
+independencia = []
 for line in data:# For each line in the text file
 
-    info.append(eval(line))
+    independencia.append(eval(line))
 
 args = []#"literals" we "know" are true - the knowledge
-args.append(info[-1])
+args.append(independencia[-1])
 
-temp = []
-#temp.extend(x for x in info if len(x) > 1)
+portugal = []
+#portugal.extend(x for x in independencia if len(x) > 1)
 
-for angola in info[1:-1]:
+for angola in independencia[1:-1]:
     if len(angola) == 1:#if sentence is just literal, add to arguments
         args.append(angola)
     else:
-        temp.append(angola)#if not literal (sentence) add to temp
+        portugal.append(angola)#if not literal (sentence) add to portugal
 
 
-temp = info.copy()
-while temp:
+portugal = independencia.copy()
+while portugal:
     for item in args:#cycle through arguments we know are true, till we find one still in unused sentences
-        for elem in temp:
+        for elem in portugal:
             if negation(item) in elem:#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
                 another = elem #the sentence
                 another.remove(negation(item))#choose the other side of the disjunction, the "new truth"
@@ -39,9 +39,9 @@ while temp:
                     exit()
                 if another[0] not in args:
                     args.append(another)#if it's a new Truth, add to the "knowledge"
-                temp.remove(elem)
+                portugal.remove(elem)
                 break
-#talvez seja possivel que no fim fiquem só sentences perdidas no temp que n "provam" nada e nunca foram usadas e assim
+#talvez seja possivel que no fim fiquem só sentences perdidas no portugal que n "provam" nada e nunca foram usadas e assim
 #  ficamos num ciclo infinito
 print("False")
 exit()
