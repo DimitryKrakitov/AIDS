@@ -8,7 +8,11 @@ def implication(a, b):
     return "[('not', '" + a + "'), '" + b + "']"
 
 def negation(a):
+    tup = eval(a)
+    if "not" in tup[0]:
+        return str(tup[1])#testar ver se isto faz sentido
     return ("('not', '" + a + "')")
+
 
 def conjunction(a, b):
     data = []
