@@ -16,10 +16,17 @@ for line in data:# For each line in the text file
     full_counter += 1
     tup = eval(line)
     exp = tup[0]
+
+    ############### DEBUGGING ##########
     '''print(tup)
-    print("elem 1: " + tup[0])
-    print("elem 2: " + tup[1])
-    print("elem 3: " + tup[2])'''
+    print("elem 1: " + str(tup[0]))
+    if len(tup) > 1:
+        print("elem 2: " + str(tup[1]))
+        if len(tup) > 2:
+            print("elem 3: " + str(tup[2]))'''
+
+
+    ####################################
     if len(tup) == 3:
         if exp == "<=>":
             output.extend(equivalence(tup[1],tup[2]))
@@ -33,7 +40,10 @@ for line in data:# For each line in the text file
             print("Invalid expression  at line: ", full_counter)
     elif len(tup) == 2:
         if exp == "not":
-            output.append(negation(tup[1]))
+            if "(" in str(tup[1]):
+                output.append(negation(str(tup[1])))
+            else:
+                output.append(negation("'" + str(tup[1]) + "'"))
         else:
             print("Invalid expression  at line: ", full_counter)
     elif len(tup) == 1:
@@ -41,6 +51,6 @@ for line in data:# For each line in the text file
     else:
         print("Invalid expression  at line: ", full_counter)
 
-print(output)
+#print(output)
 output_file(output)
 
