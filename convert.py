@@ -40,10 +40,7 @@ for line in data:# For each line in the text file
             print("Invalid expression  at line: ", full_counter)
     elif len(tup) == 2:
         if exp == "not":
-            if "(" in str(tup[1]):
-                output.append(negation(str(tup[1])))
-            else:
-                output.append(negation("'" + str(tup[1]) + "'"))
+            output.append(negation(str(tup[1])))
         else:
             print("Invalid expression  at line: ", full_counter)
     elif len(tup) == 1:

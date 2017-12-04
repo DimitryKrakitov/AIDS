@@ -10,10 +10,14 @@ def implication(a, b):
 def negation(a):
     '''print('Tuple to be negated:')
     print(a)'''
-    tup = eval(a)
+    b = str(a)
+    if "(" not in b:
+        b = "'" + b + "'"
+
+    tup = eval(b)
     if "not" in tup[0]:
         return str("'" + tup[1] + "'")#testar ver se isto faz sentido
-    return ("[('not', " + a + ")]")
+    return ("('not', " + b + ")")
 
 
 def conjunction(a, b):

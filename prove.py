@@ -30,8 +30,10 @@ for angola in independencia[1:-1]:
 portugal = independencia.copy()
 while portugal:
     for Nigga in Jail:#cycle through arguments we know are true, till we find one still in unused sentences
+        print("Who's this Nigga?")
+        print(Nigga)
         for thisNephew in portugal:
-            if negation(Nigga) in thisNephew:#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
+            if negation(str(Nigga)) in thisNephew:#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
                 anotha_one = thisNephew #the sentence
                 anotha_one.remove(negation(Nigga))#choose the other side of the disjunction, the "new truth"
                 if negation(anotha_one[0]) in Jail: #if the negation of this truth was already in "the knowledge", we have a contradiction, and we prove the resolution "True"

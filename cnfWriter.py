@@ -10,6 +10,8 @@ def output_file(sol):
         F.write(elem + "\n")
 
     #print(F) # printing the file in the console too
-    F.write(negation(sol[-1]))#isto vai causar negações de negações,reolver isso mesmo na função negation
+    print("Point we're trying to prove:")
+    print(sol[-1])
+    F.write(negation(str(sol[-1])))#isto vai causar negações de negações,resolver isso mesmo na função negation
     #  (apagar as negações em duplas negações)
     return
