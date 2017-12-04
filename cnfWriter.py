@@ -1,4 +1,4 @@
-from convFunctions import negation
+from convFunctions import negration
 def output_file(sol):
     F = open("cnf.txt",'w')
     #print("OUTPUT FILE:")
@@ -12,6 +12,6 @@ def output_file(sol):
     #print(F) # printing the file in the console too
     print("Point we're trying to prove:")
     print(sol[-1])
-    F.write(negation(str(sol[-1])))#isto vai causar negações de negações,resolver isso mesmo na função negation
+    F.write(negration(sol[-1]))#isto vai causar negações de negações,resolver isso mesmo na função negation
     #  (apagar as negações em duplas negações)
     return

@@ -12,13 +12,24 @@ def negation(a):
     print(a)'''
     b = str(a)
     if "(" not in b:
-        b = "'" + b + "'"
+        #b = "'" + b + "'"
+        return ("('not', '" + b + "')")
+    '''print('Tuple to be negated:')
+    print(b)'''
+    tup = eval(b)
+
+    if "not" in tup[0]:
+        return str("'" + tup[1] + "'")#testar ver se isto faz sentido
+    #return ("('not', '" + b + "')")
+
+def negration(a):
+    b = str(a)
+    if "(" not in b:
+        return ("('not', " + b + ")")
 
     tup = eval(b)
     if "not" in tup[0]:
-        return str("'" + tup[1] + "'")#testar ver se isto faz sentido
-    return ("('not', " + b + ")")
-
+        return str("'" + tup[1] + "'")
 
 def conjunction(a, b):
     data = []
