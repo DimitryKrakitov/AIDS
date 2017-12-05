@@ -9,52 +9,52 @@ if len(sys.argv) != 2:
 
 data = filereader(sys.argv[1])
 
-independencia = []
+cnfStatements = []
 for line in data:# For each line in the text file
 
-    independencia.append(eval(line))
+    cnfStatements.append(eval(line))
 
-Jail = []#"literals" we "know" are true - the knowledge
-Jail.append(independencia[-1])
+knowledge = []#"literals" we "know" are true - the knowledge
+knowledge.append(cnfStatements[-1])
 
-portugal = []
-#portugal.extend(x for x in independencia if len(x) > 1)
+cnfNonAtomicSentences = []
+#cnfNonAtomicSentences.extend(x for x in cnfStatements if len(x) > 1)
 
-for angola in independencia[0:-1]:
+for angola in cnfStatements[0:-1]:
     if len(angola) == 1:#if sentence is just literal, add to arguments
-        Jail.append(angola)
+        knowledge.append(angola)
     else:
-        portugal.append(angola)#if not literal (sentence) add to portugal
+        cnfNonAtomicSentences.append(angola)#if not literal (sentence) add to cnfNonAtomicSentences
 
 
-#portugal = independencia.copy()
-print("Portugal in the Begining: " + str(portugal))
-#while portugal:
-for Nigga in Jail:#cycle through arguments we know are true, till we find one still in unused sentences
+#cnfNonAtomicSentences = cnfStatements.copy()
+print("cnfNonAtomicSentences in the Begining: " + str(cnfNonAtomicSentences))
+#while cnfNonAtomicSentences:
+for literal in knowledge:#cycle through arguments we know are true, till we find one still in unused sentences
     print("")
-    print("     Jail is now: " + str(Jail))
-    #print(printer(Jail))
-    print("Who's this Nigga?")
-    print(Nigga)
-    print("  Portugal is now: " + str(portugal))
-    #print(printer(Jail))
-    for thisNephew in portugal:
-        print("thisNephew is :" + str(thisNephew))
-        print("is " + negation(str(Nigga)) + " in " + str(thisNephew))
-        if negation(str(Nigga)) in thisNephew:#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
+    print("     knowledge is now: " + str(knowledge))
+    #print(printer(knowledge))
+    print("Who's this literal?")
+    print(literal)
+    print("  cnfNonAtomicSentences is now: " + str(cnfNonAtomicSentences))
+    #print(printer(knowledge))
+    for sentence in cnfNonAtomicSentences:
+        print("sentence is :" + str(sentence))
+        print("is " + negation(str(literal)) + " in " + str(sentence))
+        if negation(str(literal)) in sentence:#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
             print("Yes my dudes")
-            anotha_one = thisNephew #the sentence
-            anotha_one.remove(negation(Nigga))#choose the other side of the disjunction, the "new truth"
-            if negation(anotha_one[0]) in Jail: #if the negation of this truth was already in "the knowledge", we have a contradiction, and we prove the resolution "True"
+            anotha_one = sentence #the sentence
+            anotha_one.remove(negation(literal))#choose the other side of the disjunction, the "new truth"
+            if negation(anotha_one[0]) in knowledge: #if the negation of this truth was already in "the knowledge", we have a contradiction, and we prove the resolution "True"
                 print("True")
                 exit()
-            if anotha_one[0] not in Jail:
-                Jail.append(anotha_one)#if it's a new Truth, add to the "knowledge"
-            portugal.remove(thisNephew)
+            if anotha_one[0] not in knowledge:
+                knowledge.append(anotha_one)#if it's a new Truth, add to the "knowledge"
+            cnfNonAtomicSentences.remove(sentence)
             break
         else:
             print("Nope my dudes")
-#talvez seja possivel que no fim fiquem só sentences perdidas no portugal que n "provam" nada e nunca foram usadas e assim
+#talvez seja possivel que no fim fiquem só sentences perdidas no cnfNonAtomicSentences que n "provam" nada e nunca foram usadas e assim
 #  ficamos num ciclo infinito
 print("False")
 exit()
