@@ -25,33 +25,9 @@ for line in data:# For each line in the text file
         if len(tup) > 2:
             print("elem 3: " + str(tup[2]))'''
 
-
     ####################################
-    if len(tup) == 3:
-        if exp == "<=>":
-            linha = equivalence(tup[1],tup[2])
-            output.extend(linha)
-
-        elif exp == "=>":
-            linha = implication(tup[1], tup[2])
-            output.append(linha)
-        elif exp == "or":
-            output.append(disjunction(tup[1],tup[2]))
-        elif exp == "and":
-            output.extend(conjunction(tup[1],tup[2]))
-        else:
-            print("Invalid expression  at line: ", full_counter)
-    elif len(tup) == 2:
-        if exp == "not":
-            output.append(negation(str(tup[1])))
-        else:
-            print("Invalid expression  at line: ", full_counter)
-    elif len(tup) == 1:
-        output.append("'" + exp + "'")
-    else:
-        print("Invalid expression  at line: ", full_counter)
-
-    if linha ==
+    print("LINE: " + line)
+    output.extend(line_processor(tup, exp, full_counter)) # Process the line (recursive)
 
 
 #print(output)
