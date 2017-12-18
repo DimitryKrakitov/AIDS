@@ -41,7 +41,7 @@ for literal in knowledge:#cycle through arguments we know are true, till we find
     for sentence in cnfNonAtomicSentences:
         print("sentence is :" + str(sentence))
         print("is " + negation(str(literal)) + " in " + str(sentence))
-        if negation(str(literal)) in sentence:#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
+        if str(negation(str(literal))) in str(sentence):#if a negated element is found in the disjunction, then the other side is true and added to the "knowledge"
             print("Yes my dudes")
             anotha_one = sentence #the sentence
             anotha_one.remove(negation(literal))#choose the other side of the disjunction, the "new truth"
