@@ -29,9 +29,12 @@ for line in data:# For each line in the text file
     ####################################
     if len(tup) == 3:
         if exp == "<=>":
-            output.extend(equivalence(tup[1],tup[2]))
+            linha = equivalence(tup[1],tup[2])
+            output.extend(linha)
+
         elif exp == "=>":
-            output.append(implication(tup[1], tup[2]))
+            linha = implication(tup[1], tup[2])
+            output.append(linha)
         elif exp == "or":
             output.append(disjunction(tup[1],tup[2]))
         elif exp == "and":
@@ -47,6 +50,9 @@ for line in data:# For each line in the text file
         output.append("'" + exp + "'")
     else:
         print("Invalid expression  at line: ", full_counter)
+
+    if linha ==
+
 
 #print(output)
 output_file(output)
