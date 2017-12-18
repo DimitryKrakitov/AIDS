@@ -51,7 +51,7 @@ for literal in knowledge:#cycle through arguments we know are true, till we find
             if anotha_one[0] not in knowledge:
                 knowledge.append(anotha_one)#if it's a new Truth, add to the "knowledge"
             cnfNonAtomicSentences.remove(sentence)
-            break
+
         else:
             print("Nope my dudes")
 #talvez seja possivel que no fim fiquem só sentences perdidas no cnfNonAtomicSentences que n "provam" nada e nunca foram usadas e assim

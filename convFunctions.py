@@ -7,19 +7,25 @@ def equivalence(a, b):
 def implication(a, b):
     return "[('not', '" + a + "'), '" + b + "']"
 
-def negation(a):
-    '''print('Tuple to be negated:')
-    print(a)'''
-    b = str(a)
+def negation(b):
+    print('Tuple to be negated:')
+    print(b)
+
     if "(" not in b:
         #b = "'" + b + "'"
         return ("('not', '" + b + "')")
-    '''print('Tuple to be negated:')
-    print(b)'''
-    tup = eval(b)
 
-    if "not" in tup[0]:
+    tup = eval(b)
+    #if "(" not in b:
+    print("tup length:", len(tup))
+    if len(tup) == 3:
+        #b = "'" + b + "'"
+        return ("('not', " + b + ")")
+    elif "not" in tup[0]:
         return str("'" + tup[1] + "'")#testar ver se isto faz sentido
+
+    print("Implausible Deniability")
+    exit(-2)
     #return ("('not', '" + b + "')")
 
 def negration(a):
