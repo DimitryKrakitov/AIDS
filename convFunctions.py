@@ -8,8 +8,8 @@ def implication(a, b):
     return "[('not', '" + a + "'), '" + b + "']"
 
 def negation(b):
-    print('Tuple to be negated:')
-    print(b)
+    '''print('Tuple to be negated:')
+    print(b)'''
 
     if "(" not in b:
         #b = "'" + b + "'"
