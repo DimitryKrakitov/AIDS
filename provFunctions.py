@@ -33,28 +33,30 @@ def fusion(prove_, clause_, elem_c, elem_p):
     fused = copy.deepcopy(prov)
 
     fusion = str(fused)
-
+    #print("FUSED")
+    #print(fusion)
     return fusion
 
 
 def negation_in(prove, clause):
     #print(prove + " FUSION WITH " + clause)
-    prove_ = eval(prove)
-    clause_ = eval(clause)
+    #prove_ = eval(prove)
+    #clause_ = eval(clause)
 
     #print(str(prove_) + str(len(prove_)))
     #print(str(clause_) + str(len(clause_)))
 
     add_kb = []
 
-    if(len(prove_) == 1 & len(clause_) == 1 & negation(prove_, clause_)):
+    if(len(prove) == 1 & len(clause) == 1 & negation(prove, clause)):
         return 1 # ITS OVER; WE PROVED THE THEOREM!!!
 
-    for elem_c in clause_:
+    for elem_c in clause:
         #print("ELEMC " + str(elem_c))
-        for elem_p in prove_:
+        for elem_p in prove:
             #print("ELEMP " + str(elem_p))
             if(negation(elem_p,elem_c)):
-                add_kb.append(fusion(prove_, clause_, elem_c, elem_p))
+                add_kb.append(fusion(prove, clause, elem_c, elem_p))
+                #print(add_kb)
 
     return add_kb

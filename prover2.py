@@ -11,7 +11,7 @@ if len(sys.argv) != 2:
 
 data = filereader(sys.argv[1])
 
-provelist=[]
+provelist = []
 cnfStatements = []
 for line in data:# For each line in the text file
     cnfStatements.append(line)
@@ -19,10 +19,10 @@ for line in data:# For each line in the text file
 provelist.append(data[len(data)-1]) # alpha is already negated
 
 for prove in provelist:
-    prove = str(prove)
+    prove = eval(prove)
     #print("PROVE: ", prove)
     for clause in cnfStatements:
-        clause = str(clause)
+        clause = eval(clause)
         #print("CLAUSE: ", clause)
         add_kb = negation_in(prove, clause)
         #print("ADD_KB: ", add_kb)
@@ -32,6 +32,7 @@ for prove in provelist:
         if(add_kb):
             cnfStatements.extend(add_kb)
             provelist.extend(add_kb)
+            #print(cnfStatements)
 
 print("THEOREM NOT PROVED: FALSE")
 exit(0)
