@@ -1,8 +1,9 @@
 
 import sys
 from filereader import *
-from convFunctions import *
+#from convFunctions import *
 from cnfWriter import *
+from dominator import *
 
 if len(sys.argv) != 2:
     print("Not the right amount of arguments.")
@@ -15,7 +16,6 @@ full_counter = 0
 for line in data:# For each line in the text file
     full_counter += 1
     tup = eval(line)
-    exp = tup[0]
 
     ############### DEBUGGING ##########
     '''print(tup)
@@ -27,7 +27,7 @@ for line in data:# For each line in the text file
 
     ####################################
     print("LINE: " + line)
-    output.extend(line_processor(tup, exp, full_counter)) # Process the line (recursive)
+    output.extend(renai_circulation(tup, full_counter)) # Process the line (recursive)
 
 
 #print(output)
