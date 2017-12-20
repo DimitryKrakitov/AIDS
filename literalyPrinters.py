@@ -1,5 +1,3 @@
-
-
 def printer(alameda):
     surprise = "["
     for Quenga in alameda:
@@ -8,7 +6,7 @@ def printer(alameda):
 
 def sendhelp(b):
 
-    if "(" in b:
+    if "[" in b:
         return b
     return "'" + b + "'"
 

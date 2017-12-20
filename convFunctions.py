@@ -11,16 +11,16 @@ def negation(b):
     '''print('Tuple to be negated:')
     print(b)'''
 
-    if "(" not in b:
+    if "[" not in b:
         #b = "'" + b + "'"
-        return ("('not', '" + b + "')")
+        return ("['not', '" + b + "']")
 
     tup = eval(b)
     #if "(" not in b:
     print("tup length:", len(tup))
     if len(tup) == 3:
         #b = "'" + b + "'"
-        return ("('not', " + b + ")")
+        return ("['not', " + b + "]")
     elif "not" in tup[0]:
         return str("'" + tup[1] + "'")#testar ver se isto faz sentido
 
@@ -31,7 +31,7 @@ def negation(b):
 def negration(a):
     b = str(a)
     if "(" not in b:
-        return ("('not', " + b + ")")
+        return ("['not', " + b + "]")
 
     tup = eval(b)
     if "not" in tup[0]:
