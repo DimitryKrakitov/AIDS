@@ -3,7 +3,9 @@ import sys
 from filereader import *
 #from convFunctions import *
 from cnfWriter import *
-from dominator import *
+#from dominator import *
+from recursivetuppling import *
+from testing import renai_circulation_teste
 
 if len(sys.argv) != 2:
     print("Not the right amount of arguments.")
@@ -26,8 +28,9 @@ for line in data:# For each line in the text file
             print("elem 3: " + str(tup[2]))'''
 
     ####################################
-    print("LINE: " + line)
-    output.extend(renai_circulation(tup, full_counter)) # Process the line (recursive)
+    print("     LINE: " + line)
+    #output.extend(renai_circulation(tup, full_counter)) # Process the line (recursive)
+    output.extend(renai_circulation_teste(list(tup), full_counter)) # Process the line (recursive)
 
 
 #print(output)

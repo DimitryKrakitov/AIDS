@@ -1,20 +1,5 @@
 from jnos import *
-from literalyPrinters import * sendhelp
-
-'''def psycho_pass(tup, output):
-
-    #linha = str(tup)
-    exp = tup[0]
-
-    linha2 = list(tup)
-    #while rec(linha2):
-    while "(" in str(linha2):
-        for elemelon in linha2[1:-1]:
-            l = list(elemelon)
-            if l[0] == '<=>':
-
-
-    return'''
+from literalyPrinters import sendhelp
 
 def rec(linha2):
     for elemelon in linha2:
@@ -22,39 +7,35 @@ def rec(linha2):
             return True
     return False
 
-def ponderingSuicide(tup):
+def renai_circulation(tup, full_counter):
 
+    output = []
+    for elemelon in tup:
+        if "(" in str(elemelon):
+            #output.extend(line_processor_hard(tup, output, full_counter))
+            output.extend(ponderingSuicide(tup, output, full_counter))
+    #output.extend(line_processor_easy(tup, full_counter))
+
+    return output
+
+
+def ponderingSuicide(tup):
     pai = no(tup)
 
     genos = pai
     level = 0
     node_list = []
-    while True:#criar a arvore
+    while True:  # criar a arvore
 
         level += level
 
         if genos.f == "<=>":
 
-            node_list.extend(equivalence2(genos.sons[0], genos.sons[1])) #adicionar filhos como novos nos
+            node_list.extend(equivalence2(genos.sons[0], genos.sons[1]))  # adicionar filhos como novos nos
 
         elif genos.f == "=>":
 
-            node_list.extend(implication2(genos.sons[0], genos.sons[1]))#adicionar filhos como novos nos 
+            node_list.extend(implication2(genos.sons[0], genos.sons[1]))  # adicionar filhos como novos nos
 
         '''for elem in genos:
             if elem'''
-
-def equivalence2(a, b):
-    data = []
-    data.append(implication2(a, b))
-    data.append(implication2(b, a))
-    return data
-
-def implication2(a, b):
-    return "('or', " + str(negation(a)) + ", " + sendhelp(str(b)) + ")"
-
-
-
-
-
-
