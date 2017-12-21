@@ -13,7 +13,7 @@ def renai_circulation_teste(tup, full_counter):
 
     jno = evaluator(jno)
 
-    print("Sentence:" + str(jno.say_my_jnos()))
+    print("     Sentence final po output:" + str(jno.say_my_jnos()))
 
 
 
@@ -25,34 +25,28 @@ def evaluator(jno):
 
         if jno.t == "<=>":
 
-            print("Detected equivalence")
             jno = equivalence3(jno)
 
         elif jno.t == "=>":
 
-            print("Detected implication")
             jno = implication3(jno)
 
         elif jno.t == "=>":
 
-            print("Detected Niggation")
             jno = negation3(jno)
 
         elif jno.t == "or":
 
             if jno.denied & (jno.t == "or" or jno.t == "and"):
 
-                print("Detected deMorgan")
                 jno = senorMorgan(jno)
 
             elif jno.t == "or" & (jno.sons[0].t == "and"):
 
-                print("Detected distributiva Right to Left")
                 jno = distributiva_RL_or(jno)
 
             elif jno.t == "or" & (jno.sons[1].t == "and"):
 
-                print("Detected distributiva Left to Right")
                 jno = distributiva_LR_or(jno)
 
     return jno
