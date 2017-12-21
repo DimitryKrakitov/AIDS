@@ -5,6 +5,8 @@ class No:
 
     def __init__(self, lista, lvl, denied = False, dad = None, debug = False):
 
+        print("Lista recebida é:", lista)
+
         self.lvl = lvl + 1
         self.denied = denied
         temp_tup = lista
@@ -39,26 +41,41 @@ class No:
             if len(lista) == 2:
 
                 #self.sons.append(No(list(eval(sendhelp(str(lista[1])))), not self.denied, self))
-                self.sons.append(No(lista[1], self.lvl, not self.denied, self))
+                self.sons.append(No((lista[1].say_my_jnos()), self.lvl, not self.denied, self))
 
             if len(lista) > 2:
-                for elem in lista[1:]:
 
-                    if debug:
-                        s = elem.say_my_jnos()
+                for elem in lista[1:]:
+                    '''if not isinstance(elem, tuple):
+                        print("Elem in sons is:", elem)
+                        elem_eval = list(eval(str(elem)))
+                        print("Elem_eval in sons is:", elem_eval)
+                        son_list = []
+                        for x in elem_eval:
+                            if isinstance(x, No):
+                                son_list.append(x.say_my_jnos())
+                            else:
+                                son_list.append(x)'''
+
+                    #if debug:
+
+                        #s = str(son_list)
+                        #print("Son_list:", son_list)
 
                         #print("Is " + s + "a string? - " + str(isinstance(s, str)))
-                        print("Filho do no:", s)
+                        #print("Filho do no:", elem.say_my_jnos())
 
                     if isinstance(elem, No):
                         print("son is literal")
                         #self.sons.append(No(eval(s), self.lvl, self.denied, self))
                         self.sons.append(No(elem, self.lvl, self.denied, self))
+                        #self.sons.append(No(son_list, self.lvl, self.denied, self))
 
                     else:
-                        print("son is sentence")
+                        #print("son is sentence")
                         #self.sons.append(No(list(eval(sendhelp(str(elem)))), self.denied, self))
                         self.sons.append(No(list(elem), self.lvl, self.denied, self))
+                        #self.sons.append(No(son_list, self.lvl, self.denied, self))
 
             #self.id()
 
@@ -73,7 +90,9 @@ class No:
             for elem in self.sons:
                 '''a = []
                 a.append(str(elem.t))'''
-                tony_wonder.append(str(elem.say_my_jnos()))
+                temp = elem.say_my_jnos()
+                #print("TEMP IS = ", temp)
+                tony_wonder.append(temp)
             return str(tony_wonder)
 
         #print("River Song was NOT here")

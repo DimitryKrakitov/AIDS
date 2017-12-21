@@ -14,7 +14,7 @@ def equivalence3(jno):  #   A <=> B -> (!A V B) ^ (!B V A)
     temp_jno.sons[1] = No.sons[0]'''
     print("jno: ", jno.say_my_jnos())
     jno.id()
-    jnoa = No(["=>", jno.sons[0],  jno.sons[1]], jno.lvl, jno.denied, jno, debug = True)
+    jnoa = No(["=>", jno.sons[0].say_my_jnos(),  jno.sons[1].say_my_jnos()], jno.lvl, jno.denied, jno, debug = True)
     print("jnoa: ", jnoa.say_my_jnos())
     jnoa.id()
     jnoa2 = implication3(jnoa)
@@ -36,7 +36,7 @@ def implication3(jno): #   A => B -> (!A V B)
 
     print("         Filho 1 de jno na primeira implicação:", negation3(jno.sons[0]).say_my_jnos())
 
-    jno2 = No(['or', negation3(jno.sons[0]), jno.sons[1]], jno.lvl, jno.denied, jno, True)
+    jno2 = No(['or', negation3(jno.sons[0].say_my_jnos()), jno.sons[1].say_my_jnos()], jno.lvl, jno.denied, jno, True)
     print("         Filho 1 de jno2 na primeira implicação:", jno2.sons[0].say_my_jnos())
     print("         No processado na implicação:", jno2.say_my_jnos())
     jno2.id()
@@ -49,7 +49,7 @@ def implication4(jno): #   A <= B -> (!B V A)
     print("         No detectado:", jno.say_my_jnos())
     jno.id()
 
-    jno2 = No(['or', negation3(jno.sons[1]), jno.sons[0]], jno.lvl, jno.denied, jno.d)
+    jno2 = No(['or', negation3(jno.sons[1].say_my_jnos()), jno.sons[0].say_my_jnos()], jno.lvl, jno.denied, jno.d)
     print("         No processado na implicação2:", jno2.say_my_jnos())
     jno2.id()
 

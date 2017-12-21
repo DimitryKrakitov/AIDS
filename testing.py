@@ -10,6 +10,7 @@ def renai_circulation_teste(tup, full_counter):
 
     print("Sentence ID:")
     jno.id()
+    print("     Sentence do primeiro jno" + str(jno.say_my_jnos()))
 
     jno = evaluator(jno)
 
@@ -31,7 +32,7 @@ def evaluator(jno):
 
             jno = implication3(jno)
 
-        elif jno.t == "=>":
+        elif jno.t == "not":
 
             jno = negation3(jno)
 
