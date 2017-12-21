@@ -1,5 +1,5 @@
 from filereader import *
-from provFunctions import negation_in, simplify
+from provFunctions import negation_in, simplify, resolve, contained
 
 import sys
 from literalyPrinters import *
@@ -25,19 +25,36 @@ for line in data:
 
 print(cnfStatements)
 
-#provelist.append(data[len(data) - 1])  # alpha is already negated
+# provelist.append(data[len(data) - 1])  # alpha is already negated
 
 
 
 #### DONT KNOW WHERE alpha is ???
-clauses = simplify(cnfStatements) ############ ORDENAR CLAUSES POR TAMANHO
+clauses = simplify(cnfStatements)
+print("CLAUSES UNSORTED:")
+print(clauses)
+clauses = sorted(clauses, key=len)  ############ ORDENAR CLAUSES POR TAMANHO
 new = []
+print("CLAUSES SORTED:")
+print(clauses)
+
 while 1:
     for i in clauses:
         for j in clauses:
-            resolvent = resolve(i,j)
-
-
+            if i!=j:
+                resolvent, resolved = resolve(i, j)
+            print("RESOLVE:")
+            print(i + j)
+            if resolved and (resolvent != []):
+                new.append(resolvent)
+                clauses.append(new)
+                clauses = simplify(clauses)
+            elif resolved and (resolvent == []):
+                print("TRUE")
+                exit(1)
+            if contained(clauses, new):  # We are not "learning" anything new...
+                print("FALSE")
+                exit(-1)
 
 exit(1)
 for prove in provelist:

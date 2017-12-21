@@ -78,18 +78,19 @@ def simplify_2(cnf, literals):
 
     for i in cnf:
         for l in literals:
-            if((l in i) & (("-"+l) in i)):
+            if ((l in i) & (("-" + l) in i)):
                 cnf_2.remove(i)
     print("2")
     print(cnf_2)
     return cnf_2
+
 
 def simplify_3(cnf):
     cnf_3 = copy.copy(cnf)
     remove = []
     for i in range(len(cnf_3)):
         for j in range(len(cnf_3)):
-            #print(str(i) + " - " + str(j) )
+            # print(str(i) + " - " + str(j) )
             if (i != j) and (set(cnf_3[i]) < set(cnf_3[j])) and (cnf_3[j] not in remove):
                 remove.append(cnf_3[j])
     for j in remove:
@@ -98,30 +99,36 @@ def simplify_3(cnf):
     print(cnf_3)
     return cnf_3
 
-def simplify_1(cnf, all_literals,  literals, not_literals):
+
+def simplify_1(cnf, all_literals, literals, not_literals):
     remove = []
+    print("LITERALS")
     print(literals)
+    print("NOT LITERALS")
     print(not_literals)
     for l in literals[:]:
-        nl=("-"+l)
-        if( nl not in not_literals):
+        nl = ("-" + l)
+        if (nl not in not_literals):
             remove.append(l)
-
+            # print(l)
     for n in not_literals[:]:
         ns = str(n)
         if (ns[1:] not in literals):
+            # print(n)
             remove.append(n)
 
-    #remove = set(literals) ^ set(not_literals)
+    # print(remove)
+    # remove = set(literals) ^ set(not_literals)
 
-    for c in cnf:
+    for c in cnf[:]:
         for r in remove:
-            if(r in c):
+            if (r in c):
                 cnf.remove(c)
     print("1")
     print(cnf)
-    exit(1)
+
     return cnf
+
 
 def get_literals(cnf):
     all_literals = []
@@ -140,8 +147,9 @@ def get_literals(cnf):
 
     return all_literals, literals, not_literals
 
+
 def simplify(cnf):
-    all_literals,literals, not_literals = get_literals(cnf)
+    all_literals, literals, not_literals = get_literals(cnf)
 
     print("LITERALS")
     print(literals)
@@ -153,12 +161,22 @@ def simplify(cnf):
 
     all_literals, literals, not_literals = get_literals(cnf_3)
 
-    cnf_1 = simplify_1(cnf_3, all_literals, literals,  not_literals)
+    cnf_1 = simplify_1(cnf_3, all_literals, literals, not_literals)
 
     return cnf_1
 
 
-def resolve(clause_i,clause_j):
+def contained(list1, list2):
+    for i in range(len(list1)):
+        for j in range(len(list2)):
+            if not set(list1[i]) >= set(
+                    list2[j]):  # If a value of list1 is not on list2 then list1 is not contained in list2
+                return False
+
+    return True
+
+
+def resolve(clause_i, clause_j):
     resolvent = []
     ci = copy.copy(clause_i)
     cj = copy.copy(clause_j)
@@ -166,14 +184,14 @@ def resolve(clause_i,clause_j):
     for i in clause_i:
         for j in clause_j:
             neg = str(i)
-            if((neg[0]=="-") and (neg[1:] in j)):
+            if ((neg[0] == "-") and (neg[1:] in j)):
                 resolved = True
-            elif((neg[0]!="-") and (("-"+neg) in j)):
+            elif ((neg[0] != "-") and (("-" + neg) in j)):
                 resolved = True
-            if(resolved):
+            if (resolved):
                 ci.remove(i)
                 cj.remove(j)
                 resolvent = ci.extend(cj)
                 return resolvent, True
 
-    return resolvent, False # It will return [ ] without resolving 
+    return resolvent, False  # It will return [ ] without resolving
