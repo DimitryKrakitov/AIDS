@@ -3,9 +3,9 @@ from literalyPrinters import sendhelp
 
 class No:
 
-    def __init__(self, lista, lvl, denied = False, dad = None, debug = False):
-
-        print("Lista recebida é:", lista)
+    def __init__(self, lista, lvl, denied = False, dad = None, sons_bool = [False, False], debug = False):
+        if debug:
+            print("Lista recebida é:", lista)
 
         self.lvl = lvl + 1
         self.denied = denied
@@ -17,12 +17,16 @@ class No:
         self.lit = False
 
         #print("No(?) indexado é:", str(temp_tup))
+        if isinstance(lista, str):
 
-        if isinstance(lista,No) & False:
+            self.t = lista
             if debug:
-                print("Cabeça do No (literal):", lista.t)
-            self.t = lista.t
-            self.lit = True
+                print("Cabeça do No (sentence):", lista)
+            '''if isinstance(lista,No) & False:
+                if debug:
+                    print("Cabeça do No (literal):", lista.t)
+                self.t = lista.t
+                self.lit = True'''
 
         else:
 
@@ -44,7 +48,7 @@ class No:
                 self.sons.append(No((lista[1].say_my_jnos()), self.lvl, not self.denied, self))
 
             if len(lista) > 2:
-
+                ctr = 0
                 for elem in lista[1:]:
                     '''if not isinstance(elem, tuple):
                         print("Elem in sons is:", elem)
@@ -57,6 +61,7 @@ class No:
                             else:
                                 son_list.append(x)'''
 
+                            #self.sons.append(No(list(elem), self.lvl, self.denied, self))
                     #if debug:
 
                         #s = str(son_list)
@@ -65,16 +70,24 @@ class No:
                         #print("Is " + s + "a string? - " + str(isinstance(s, str)))
                         #print("Filho do no:", elem.say_my_jnos())
 
-                    if isinstance(elem, No):
-                        print("son is literal")
+                    #if isinstance(elem, No):
+                        #print("son is literal")
                         #self.sons.append(No(eval(s), self.lvl, self.denied, self))
-                        self.sons.append(No(elem, self.lvl, self.denied, self))
+                        #print("ELEM TO BE SENT AS A SON", elem)
+                        #self.sons.append(No(elem, self.lvl, self.denied, self))
                         #self.sons.append(No(son_list, self.lvl, self.denied, self))
 
-                    else:
+                    #else:
                         #print("son is sentence")
                         #self.sons.append(No(list(eval(sendhelp(str(elem)))), self.denied, self))
-                        self.sons.append(No(list(elem), self.lvl, self.denied, self))
+                    if debug:
+                        print("ELEM TO BE SENT AS A SON", elem)
+                    if isinstance(elem, tuple):
+                        self.sons.append(No(list(elem), self.lvl, sons_bool[ctr], self))
+                    else:
+                        self.sons.append(No(eval(sendhelp(elem)), self.lvl, sons_bool[ctr], self))
+                    ctr += 1
+
                         #self.sons.append(No(son_list, self.lvl, self.denied, self))
 
             #self.id()
@@ -99,7 +112,8 @@ class No:
 
         #return "'" + str(self.t[0]) + "'"
         #return str(self.t[0])
-        return str(str(self.t) + "(literal)")
+        #return str(str(self.t) + "(literal)")
+        return str(self.t)
 
     def id(self):
 

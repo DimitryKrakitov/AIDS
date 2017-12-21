@@ -1,7 +1,10 @@
 
 import sys
 from filereader import *
-#from cnfWriter import *
+#from convFunctions import *
+from cnfWriter import *
+#from dominator import *
+from recursivetuppling import *
 from testing import renai_circulation_teste
 
 if len(sys.argv) != 2:
@@ -27,9 +30,9 @@ for line in data:# For each line in the text file
     ####################################
     print("     LINE: " + line)
     #output.extend(renai_circulation(tup, full_counter)) # Process the line (recursive)
-    output.extend(renai_circulation_teste(tup, full_counter)) # Process the line (recursive)
+    output.extend(renai_circulation_teste(list(tup), full_counter)) # Process the line (recursive)
 
 
 #print(output)
-#output_file(output)
+output_file(output)
 
