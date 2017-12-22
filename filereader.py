@@ -3,7 +3,7 @@ def filereader(file):
         with open(file, 'r') as f: # Open the file to retrieve the text lines
             data = f.readlines()
     except EnvironmentError:  # Is the name of the file correct?
-        print("Nigga pls")
+        print("Invalid File")
         exit(-2)
     return data
 
@@ -13,7 +13,7 @@ def cnfreader(file):
         with open(file, 'r') as f: # Open the file to retrieve the text lines
             data = f.readlines()
     except EnvironmentError:  # Is the name of the file correct?
-        print("Nigga pls, bad CNF file, yaw")
+        print("Invalid CNF File")
         exit(-2)
     return data
 
