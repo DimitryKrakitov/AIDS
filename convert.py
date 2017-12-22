@@ -1,7 +1,7 @@
 import sys
 from filereader import *
 from cnfWriter import *
-from testing import tup_to_cnf
+from testing import CNFer
 from kafka import *
 
 '''Main file of the program. Here all the main functions are called.
@@ -41,8 +41,8 @@ for line in data:  # For each line in the text file
 
     try:
 
-        cnf_clauses.extend(tup_to_cnf(tup))  # Process the line (recursive)
-    # new_tup = tup_to_cnf(tup, full_counter) # Process the line (recursive)
+        cnf_clauses.extend(CNFer(tup))  # Process the line (recursive)
+    # new_tup = CNFer(tup, full_counter) # Process the line (recursive)
     except:
         print("Invalid sentence at line ", full_counter)
 

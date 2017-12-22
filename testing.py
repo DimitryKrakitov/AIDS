@@ -90,7 +90,7 @@ def searcher(tup):  # searches for equivalences and implications
                     elif tup[1][0] == 'not':
                         new_tup = tup[1][1]
                     else:
-                        print("Unexpected negated sentence")
+                        #print("Unexpected negated sentence")
                         new_tup = searcher(negation(searcher(negation(tup))))
 
                         # print("Unexpected error in negated sentence")
