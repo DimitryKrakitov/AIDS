@@ -13,6 +13,8 @@ def metamorfose(lines):
             # line = list(elem)
             a = cnf_maker(elem, l)
             b = trimming(a[1])
+            if isinstance(b, list) and len(b) == 1:
+                b = b[0]
             if b:
                 cnf.append(b)
         else:
