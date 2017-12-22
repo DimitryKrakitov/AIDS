@@ -1,6 +1,5 @@
 from filereader import *
 from provFunctions import simplify, resolve, contained, remove_duplicates, simplify_4
-
 import sys
 
 if len(sys.argv) != 2:
@@ -9,9 +8,19 @@ if len(sys.argv) != 2:
 
 data = filereader(sys.argv[1])
 
-provelist = []
-cnfStatements = []
 
+
+
+
+
+
+'''
+Where we change the syntax of the clauses to a more convinient one. Every negated literal is rewriten according
+to the example:
+( ’ not ’ , ’B’ ) ----->  '-B'
+
+'''
+cnfStatements = []
 for line in data:
     for s in ["\n", " ", "'", "[", "]", "(", ")", "not,"]:
         if s != "not,":
@@ -20,12 +29,19 @@ for line in data:
             line = line.replace(s, "-")
     cnfStatements.append(line.split(","))
 
+# Before starting the reasoner, all the knowledge base is simplified
+# acording to the 4 simplifications mentioned in the report.
+# This improves the efficency of the algorithm.
 clauses = simplify(cnfStatements)
+# All clauses are sorted, giving priority to clauses with less literals:
 clauses = sorted(clauses, key=len)
 
+# If after all the simplifications, all the clauses are removed then this means that there is nothing to prove.
+# The program returns False meaning that the sentence cannot be proven given the knowledge base provided.
 if not clauses:
     print("FALSE")
     exit(-2)
+
 
 '''
 Theorem Solver: Given a knowledge base (clauses) of facts and a sentence to prove (included in clauses),
