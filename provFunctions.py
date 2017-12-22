@@ -1,7 +1,9 @@
 import copy
 
 '''
-
+Simplification 4: Resolves clauses with repeated literals,  removing  the  duplicates.  
+This  is  implemented, by making a "set" out of the clauses which eliminate duplicates
+and then returning back to a list type.
 '''
 
 
@@ -13,7 +15,8 @@ def simplify_4(cnf):
 
 
 '''
-
+Simplification 2: Discards tautologies which are clauses with both a literal and it's negation. These do not add any
+information to the solver since they are always true.
 '''
 
 
@@ -29,7 +32,9 @@ def simplify_2(cnf, literals):
 
 
 '''
-
+Simplification 3: Clauses implied by other clauses are removed. In other words, if a clause is contained in another, the
+larger one is removed. Each  clause  is converted to a ”set” in python and compared with the all others in search of a 
+another clause containing every element of the first one,if this happens the latter one is removed.
 '''
 
 
@@ -38,16 +43,21 @@ def simplify_3(cnf):
     remove = []
     for i in range(len(cnf_3)):
         for j in range(len(cnf_3)):
-            # print(str(i) + " - " + str(j) )
             if (i != j) and (set(cnf_3[i]) <= set(cnf_3[j])) and (cnf_3[j] not in remove):
-                remove.append(cnf_3[j])
+                remove.append(cnf_3[j])  # Remove the largest clause
     for j in remove:
         cnf_3.remove(j)
     return cnf_3
 
 
 '''
-
+Simplification 1: Clauses that contain literals which cannot be resolved are removed. This is done by previoulsy storing
+all the "positive" literal instances in a list and the "negative" literal instances in another. If a literal is in a 
+list but not the other, than that literal cannot be resolved. Every clause containing that literal is thus removed.
+Arguments:
+cnf - list of clauses
+literals - list of non-negated literal instances of the list of clauses
+not_literals - list of negated literal instances of the list of clauses
 '''
 
 
@@ -71,7 +81,7 @@ def simplify_1(cnf, literals, not_literals):
 
 
 '''
-
+get_literals(): 
 '''
 
 
@@ -131,7 +141,8 @@ def contained(list1, list2):
 
 
 '''
-
+remove_duplicates(): Removes duplicate clauses from a list of clauses.
+This is implemented, by first sorting the clauses and then removing consecutive elements that are equal.
 '''
 
 
