@@ -1,10 +1,8 @@
-
 import sys
 from filereader import *
 from cnfWriter import *
 from testing import renai_circulation
 from kafka import *
-
 
 '''Main file of the program. Here all the main functions are called.
 It starts off by calling the function that reads the input file,
@@ -17,18 +15,15 @@ has the wrong format, instead of crashing the program, a warning will
 be sent out indicating the line of the invalid sentence and ignores it, 
 passing onto the next, keeping the program running smoothly.'''
 
-
-
 if len(sys.argv) != 2:
     print("Not the right amount of arguments.")
     exit(-1)
-
 
 data = filereader(sys.argv[1])
 cnf_clauses = []
 cnf_to_prove = []
 full_counter = 0
-for line in data:# For each line in the text file
+for line in data:  # For each line in the text file
     full_counter += 1
     tup = eval(line)
 
@@ -46,8 +41,8 @@ for line in data:# For each line in the text file
 
     try:
 
-        cnf_clauses.extend(renai_circulation(tup)) # Process the line (recursive)
-    #new_tup = renai_circulation_teste(tup, full_counter) # Process the line (recursive)
+        cnf_clauses.extend(renai_circulation(tup))  # Process the line (recursive)
+    # new_tup = renai_circulation_teste(tup, full_counter) # Process the line (recursive)
     except:
         print("Invalid sentence at line ", full_counter)
 
@@ -62,7 +57,7 @@ for line in data:# For each line in the text file
         print("     line ", full_counter, "(2/2): ", str(new_tup[2]))
         new_line.append(renai_circulation_teste(new_tup[2]))'''
 
-#cnf_clauses.append(new_tup)
+# cnf_clauses.append(new_tup)
 
 '''try:
 
@@ -71,5 +66,4 @@ for line in data:# For each line in the text file
 except:
     print("Invalid clause to prove, line: ", (full_counter + 1))'''
 
-output_file(metamorfose(cnf_clauses))#, metamorfose(cnf_to_prove))
-
+output_file(metamorfose(cnf_clauses))  # , metamorfose(cnf_to_prove))

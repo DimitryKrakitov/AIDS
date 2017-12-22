@@ -4,9 +4,8 @@ def printer(alameda):
         surprise += " " + str(Quenga) + ";"
     return surprise + "]"
 
-def sendhelp(b):
 
+def sendhelp(b):
     if "[" in b:
         return b
     return "'" + b + "'"
-
