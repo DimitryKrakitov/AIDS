@@ -23,33 +23,20 @@ for line in data:
             line = line.replace(s, "-")
     cnfStatements.append(line.split(","))
 
-print("BEFORE SIMPLIFY")
-print(cnfStatements)
-
 # provelist.append(data[len(data) - 1])  # alpha is already negated
 
 
 #### DONT KNOW WHERE alpha is ???
 clauses = simplify(cnfStatements)
 
-print("\n")
-print("\n")
-
 clauses = sorted(clauses, key=len)  ############ ORDENAR CLAUSES POR TAMANHO
 
-print("CLAUSES SORTED:")
-print(clauses)
-
-print("\n")
-
 if not clauses:
-    print("SIMPLIFICATION EMPTIED CLAUSES")
+    #print("SIMPLIFICATION EMPTIED CLAUSES")
     print("FALSE")
     exit(-2)
 new = []
-x=0
 while 1:
-    x=x+1
     for i in range(len(clauses)):
         for j in range(len(clauses)):
             if i < j:
@@ -87,6 +74,3 @@ while 1:
     clauses = simplify(clauses)
     #print("SIMPLIFIED:")
     #print(clauses)
-    if(x==2):
-        #exit(23)
-        pass
