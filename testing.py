@@ -5,7 +5,7 @@ def delusion_express(tup):
     #print("Is tup a tuple? ", isinstance(tup,tuple))
 
     #new_line = []
-    print("\0")
+   #print("\0")
 
     new_tup = searcher(tup)
     while isinstance(new_tup, tuple) and (new_tup[0] is not 'and') and ('and' in str(new_tup[1:])):

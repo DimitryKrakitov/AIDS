@@ -15,7 +15,7 @@ data = filereader(sys.argv[1])
 cnf_clauses = []
 cnf_to_prove = []
 full_counter = 0
-for line in data[0:-1]:# For each line in the text file
+for line in data:# For each line in the text file
     full_counter += 1
     tup = eval(line)
 
@@ -28,8 +28,8 @@ for line in data[0:-1]:# For each line in the text file
             print("elem 3: " + str(tup[2]))'''
 
     ####################################
-    print("\0")
-    print("LINE: " + line)
+    '''print("\0")
+    print("LINE: " + line)'''
 
     try:
 
@@ -51,12 +51,12 @@ for line in data[0:-1]:# For each line in the text file
 
 #cnf_clauses.append(new_tup)
 
-try:
+'''try:
 
     cnf_to_prove.extend(renai_circulation(negation(eval(data[-1]))))  # Process the line (recursive)
 # new_tup = renai_circulation_teste(tup, full_counter) # Process the line (recursive)
 except:
-    print("Invalid clause to prove, line: ", (full_counter + 1))
+    print("Invalid clause to prove, line: ", (full_counter + 1))'''
 
-output_file(metamorfose(cnf_clauses), metamorfose(cnf_to_prove))
+output_file(metamorfose(cnf_clauses))#, metamorfose(cnf_to_prove))
 
