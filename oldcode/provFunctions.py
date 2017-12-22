@@ -1,10 +1,20 @@
 import copy
 
+'''
+
+'''
+
+
 def simplify_4(cnf):
     cnf_4 = []
     for i in range(len(cnf)):
         cnf_4.append(list(set(cnf[i])))
     return cnf_4
+
+
+'''
+
+'''
 
 
 def simplify_2(cnf, literals):
@@ -18,6 +28,11 @@ def simplify_2(cnf, literals):
     return cnf_2
 
 
+'''
+
+'''
+
+
 def simplify_3(cnf):
     cnf_3 = copy.copy(cnf)
     remove = []
@@ -29,6 +44,11 @@ def simplify_3(cnf):
     for j in remove:
         cnf_3.remove(j)
     return cnf_3
+
+
+'''
+
+'''
 
 
 def simplify_1(cnf, literals, not_literals):
@@ -46,9 +66,13 @@ def simplify_1(cnf, literals, not_literals):
     for r in remove:
         for c in cnf:
             if r in c:
-
                 cnf.remove(c)
     return cnf
+
+
+'''
+
+'''
 
 
 def get_literals(cnf):
@@ -69,6 +93,11 @@ def get_literals(cnf):
     return all_literals, literals, not_literals
 
 
+'''
+
+'''
+
+
 def simplify(cnf):
     all_literals, literals, not_literals = get_literals(cnf)
 
@@ -83,6 +112,12 @@ def simplify(cnf):
     return cnf_1
 
 
+'''
+
+'''
+
+
+
 def contained(list1, list2):
     # if not list1:
     #   return False
@@ -95,10 +130,20 @@ def contained(list1, list2):
     return True
 
 
+'''
+
+'''
+
+
 def remove_duplicates(l):
     l.sort()
-    l = [l[i] for i in range(len(l)) if i == 0 or l[i] != l[i-1]]
+    l = [l[i] for i in range(len(l)) if i == 0 or l[i] != l[i - 1]]
     return l
+
+
+'''
+
+'''
 
 
 def resolve(clause_i, clause_j):

@@ -12,8 +12,6 @@ data = filereader(sys.argv[1])
 
 
 
-
-
 '''
 Where we change the syntax of the clauses to a more convinient one. Every negated literal is rewriten according
 to the example:
