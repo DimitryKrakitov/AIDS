@@ -3,8 +3,21 @@ import sys
 from filereader import *
 from cnfWriter import *
 from testing import renai_circulation
-#from kafka import *
-from kafka3 import *
+from kafka import *
+
+
+'''Main file of the program. Here all the main functions are called.
+It starts off by calling the function that reads the input file,
+creates a cycle that sends each individual line read from the file
+to the functions created in order to handle them and turn them into
+CNF form. At the end of the cycle all processed lines are sent to
+the file that prints them onto the console. Some choices were made here
+on how to handle exceptions: For example, if one line of the input file
+has the wrong format, instead of crashing the program, a warning will
+be sent out indicating the line of the invalid sentence and ignores it, 
+passing onto the next, keeping the program running smoothly.'''
+
+
 
 if len(sys.argv) != 2:
     print("Not the right amount of arguments.")

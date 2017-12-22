@@ -1,6 +1,10 @@
 from functions import *
 
-def delusion_express(tup):
+'''tup_to_cnf: function that receives a line in the form
+of a tuple and keeps calling the function (searcher) that transforms this
+sentence into CNF form until said form is reached'''
+
+def tup_to_cnf(tup):
 
     #print("Is tup a tuple? ", isinstance(tup,tuple))
 
@@ -15,21 +19,29 @@ def delusion_express(tup):
     #new_line.append(new_tup)
     return new_tup
 
-def renai_circulation(tup):
+'''CNFer: checks if the operator of the sentence is an "and". If it is,
+it breaks said sentence into 2'''
+
+def CNFer(tup):
     new_line = []
-    new_tup = delusion_express(tup)
+    new_tup = tup_to_cnf(tup)
 
     '''print("function:", )
     print("Is funcion an 'and'?", tup[0] == 'and')'''
     if isinstance(new_tup, tuple) and new_tup[0] == 'and':
         #print("Line broken in 2")
-        new_line.extend(renai_circulation(new_tup[1]))
-        new_line.extend(renai_circulation(new_tup[2]))
+        new_line.extend(CNFer(new_tup[1]))
+        new_line.extend(CNFer(new_tup[2]))
     else:
         #print("CNF line to print")
         new_line.append(new_tup)
 
     return new_line
+
+'''searcher: function that searches the tuple recursively (in tree-form)
+looking for any situations that defy the CNF form. When such situation
+is arrived upon, it calls the right function to deal with that specific situation,
+ to turn that portion of the sentence into something that follows the CNF norm'''
 
 def searcher(tup): #searches for equivalences and implications
 

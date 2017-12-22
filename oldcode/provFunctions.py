@@ -1,76 +1,20 @@
 import copy
-import itertools
 
-def negation(p, c):
-    str_p = str(p)
-    str_c = str(c)
-    if (str_p == '(\'not\', \'' + str_c + '\')'):
-        # print("TRUE FIRST")
-        return True
-    if (str_c == '(\'not\', \'' + str_p + '\')'):
-        # print("TRUE SECOND")
-        return True
-    # print("FALSE")
-    return False
+'''
 
-
-def fusion(prove_, clause_, elem_c, elem_p):
-    prov = list(prove_)
-    claus = list(clause_)
-
-    print("JOIN")
-    print(prov)
-    print("AND")
-
-    print("ANTES")
-    print(claus)
-
-    prov.remove(elem_p)
-    claus.remove(elem_c)
-
-    print("DEPOIS")
-    print(claus)
-
-    prov.extend(claus)
-    fused = copy.deepcopy(prov)
-
-    fusion = str(fused)
-    # print("FUSED")
-    # print(fusion)
-    return fusion
-
-
-def negation_in(prove, clause):
-    # print(prove + " FUSION WITH " + clause)
-    # prove_ = eval(prove)
-    # clause_ = eval(clause)
-
-    # print(str(prove_) + str(len(prove_)))
-    # print(str(clause_) + str(len(clause_)))
-
-    add_kb = []
-
-    if (len(prove) == 1 & len(clause) == 1 & negation(prove, clause)):
-        return 1  # ITS OVER; WE PROVED THE THEOREM!!!
-
-    for elem_c in clause:
-        # print("ELEMC " + str(elem_c))
-        for elem_p in prove:
-            # print("ELEMP " + str(elem_p))
-            if (negation(elem_p, elem_c)):
-                add_kb.append(fusion(prove, clause, elem_c, elem_p))
-                # print(add_kb)
-
-    return add_kb
+'''
 
 
 def simplify_4(cnf):
     cnf_4 = []
     for i in range(len(cnf)):
         cnf_4.append(list(set(cnf[i])))
-    #print("4")
-    #print(cnf_4)
     return cnf_4
+
+
+'''
+
+'''
 
 
 def simplify_2(cnf, literals):
@@ -81,9 +25,12 @@ def simplify_2(cnf, literals):
             if (l in i) and (("-" + l) in i):
                 cnf_2.remove(i)
                 break
-    #print("2")
-    #print(cnf_2)
     return cnf_2
+
+
+'''
+
+'''
 
 
 def simplify_3(cnf):
@@ -96,43 +43,36 @@ def simplify_3(cnf):
                 remove.append(cnf_3[j])
     for j in remove:
         cnf_3.remove(j)
-    #print("3")
-    #print(cnf_3)
     return cnf_3
 
 
-def simplify_1(cnf, all_literals, literals, not_literals):
+'''
+
+'''
+
+
+def simplify_1(cnf, literals, not_literals):
     remove = []
-    #print("LITERALS")
-    #print(literals)
-    #print("NOT LITERALS")
-    #print(not_literals)
+
     for l in literals[:]:
         nl = ("-" + l)
         if nl not in not_literals:
             remove.append(l)
-            # print(l)
     for n in not_literals[:]:
         ns = str(n)
         if ns[1:] not in literals:
-            # print(n)
             remove.append(n)
-    #print("REMOVE THIS LITERALS:")
-    #print(remove)
-    # remove = set(literals) ^ set(not_literals)
-    # print(cnf)
-    # print("plz")
 
     for r in remove:
         for c in cnf:
             if r in c:
-                # print("C")
-                # print(c)
                 cnf.remove(c)
-    #print("1")
-    #print(cnf)
-
     return cnf
+
+
+'''
+
+'''
 
 
 def get_literals(cnf):
@@ -153,24 +93,29 @@ def get_literals(cnf):
     return all_literals, literals, not_literals
 
 
+'''
+
+'''
+
+
 def simplify(cnf):
     all_literals, literals, not_literals = get_literals(cnf)
 
-    #print("LITERALS")
-    #print(literals)
-    #print("NOT LITERALS")
-    #print(not_literals)
-    #print("ALL")
-    #print(all_literals)
     cnf_4 = simplify_4(cnf)
     cnf_2 = simplify_2(cnf_4, literals)
     cnf_3 = simplify_3(cnf_2)
 
     all_literals, literals, not_literals = get_literals(cnf_3)
 
-    cnf_1 = simplify_1(cnf_3, all_literals, literals, not_literals)
+    cnf_1 = simplify_1(cnf_3, literals, not_literals)
 
     return cnf_1
+
+
+'''
+
+'''
+
 
 
 def contained(list1, list2):
@@ -185,10 +130,20 @@ def contained(list1, list2):
     return True
 
 
+'''
+
+'''
+
+
 def remove_duplicates(l):
     l.sort()
-    l = [l[i] for i in range(len(l)) if i == 0 or l[i] != l[i-1]]
+    l = [l[i] for i in range(len(l)) if i == 0 or l[i] != l[i - 1]]
     return l
+
+
+'''
+
+'''
 
 
 def resolve(clause_i, clause_j):
@@ -205,14 +160,9 @@ def resolve(clause_i, clause_j):
             if resolved:
                 ci.remove(i)
                 cj.remove(j)
-                # print("CI")
-                # print(ci)
-                # print("CJ")
-                # print(cj)
                 if not ci:
                     return cj, True
                 else:
-                    #print("IN")
                     ci.extend(cj)
                     return ci, True
 

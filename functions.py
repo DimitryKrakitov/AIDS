@@ -1,3 +1,8 @@
+
+'''Group of functions that independently solve each non-CNF situation caught
+by the "searcher" function. A simple depiction of each situation is pointed out
+in front of each function.'''
+
 def equivalence(tup):   #   A <=> B -> (!A V B) ^ (!B V A)
 
     A = tup[1]

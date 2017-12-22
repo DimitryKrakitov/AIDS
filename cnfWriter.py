@@ -1,4 +1,7 @@
 from functions import negation
+
+'''Function that receives a list of sentences in their final form to be printed
+and lays them out onto the console, to be picked up by the prover'''
 def output_file(sol):
     #F = open("cnf.txt",'w')
     #print("OUTPUT FILE:")
