@@ -15,11 +15,19 @@ has the wrong format, instead of crashing the program, a warning will
 be sent out indicating the line of the invalid sentence and ignores it, 
 passing onto the next, keeping the program running smoothly.'''
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 1:
     print("Not the right amount of arguments.")
+    print("e.g: python3 convert.py < sentences.txt")
     exit(-1)
 
-data = filereader(sys.argv[1])
+#data = filereader(sys.argv[1])
+data = sys.stdin.readlines()
+
+if not data:
+    print("No Data!")
+    exit(-1)
+
+
 cnf_clauses = []
 cnf_to_prove = []
 full_counter = 0

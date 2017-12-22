@@ -2,13 +2,17 @@ from filereader import *
 from provFunctions import simplify, resolve, contained, remove_duplicates, simplify_4
 import sys
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 1:
     print("Not the right amount of arguments.")
+    print("e.g: python3 prover.py < cnf.txt")
     exit(-1)
 
-data = filereader(sys.argv[1])
+#data = filereader(sys.argv[1])
+data = sys.stdin.readlines()
 
-
+if not data:
+    print("No Data!")
+    exit(-1)
 
 
 
