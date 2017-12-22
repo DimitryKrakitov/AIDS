@@ -1,6 +1,6 @@
 from functions import negation
 def output_file(sol):
-    F = open("cnf.txt",'w')
+    #F = open("cnf.txt",'w')
     #print("OUTPUT FILE:")
 
     #print("CNF form: ")
@@ -9,7 +9,7 @@ def output_file(sol):
         if not isinstance(elem, tuple) and not isinstance(elem, list):
             elem = "'" + elem + "'"
         print(elem)
-        F.write(str(elem) + "\n")
+        #F.write(str(elem) + "\n")
 
     #print(F) # printing the file in the console too
     '''print("Points we're trying to prove:")
