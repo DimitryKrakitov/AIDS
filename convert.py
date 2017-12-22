@@ -1,8 +1,10 @@
 
 import sys
 from filereader import *
-#from cnfWriter import *
-from testing import renai_circulation_teste
+from cnfWriter import *
+from testing import renai_circulation
+#from kafka import *
+from kafka3 import *
 
 if len(sys.argv) != 2:
     print("Not the right amount of arguments.")
@@ -10,9 +12,10 @@ if len(sys.argv) != 2:
 
 
 data = filereader(sys.argv[1])
-output = []
+cnf_clauses = []
+cnf_to_prove = []
 full_counter = 0
-for line in data:# For each line in the text file
+for line in data[0:-1]:# For each line in the text file
     full_counter += 1
     tup = eval(line)
 
@@ -25,11 +28,35 @@ for line in data:# For each line in the text file
             print("elem 3: " + str(tup[2]))'''
 
     ####################################
-    print("     LINE: " + line)
-    #output.extend(renai_circulation(tup, full_counter)) # Process the line (recursive)
-    output.extend(renai_circulation_teste(tup, full_counter)) # Process the line (recursive)
+    print("\0")
+    print("LINE: " + line)
 
+    try:
 
-#print(output)
-#output_file(output)
+        cnf_clauses.extend(renai_circulation(tup)) # Process the line (recursive)
+    #new_tup = renai_circulation_teste(tup, full_counter) # Process the line (recursive)
+    except:
+        print("Invalid sentence at line ", full_counter)
+
+    '''while isinstance(new_tup, tuple) and new_tup[0] == 'and':
+    
+    if isinstance(new_tup, tuple) and new_tup[0] == 'and':
+        # new_tup = ands(new_tup)
+
+        print("New Lines formed (probably from equivalence)")
+        print("     line ", full_counter, "(1/2): ", str(new_tup[1]))
+        new_line.append(renai_circulation_teste(new_tup[1]))
+        print("     line ", full_counter, "(2/2): ", str(new_tup[2]))
+        new_line.append(renai_circulation_teste(new_tup[2]))'''
+
+#cnf_clauses.append(new_tup)
+
+try:
+
+    cnf_to_prove.extend(renai_circulation(negation(eval(data[-1]))))  # Process the line (recursive)
+# new_tup = renai_circulation_teste(tup, full_counter) # Process the line (recursive)
+except:
+    print("Invalid clause to prove, line: ", (full_counter + 1))
+
+output_file(metamorfose(cnf_clauses), metamorfose(cnf_to_prove))
 
