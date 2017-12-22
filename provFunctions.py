@@ -81,7 +81,8 @@ def simplify_1(cnf, literals, not_literals):
 
 
 '''
-get_literals(): 
+get_literals(): A function which receives a list of clauses and returns two lists. One with all instances of non-negated
+literals (list "literals") and another with all instances of negated literals (list "not_literals").
 '''
 
 
@@ -100,22 +101,22 @@ def get_literals(cnf):
                     not_literals.append(j)
                 all_literals.append(j)
 
-    return all_literals, literals, not_literals
+    return literals, not_literals
 
 
 '''
-
+simplify(): Receives a list of clauses and preforms all the 4 simplifications explained in the report.
 '''
 
 
 def simplify(cnf):
-    all_literals, literals, not_literals = get_literals(cnf)
+    literals, not_literals = get_literals(cnf)
 
     cnf_4 = simplify_4(cnf)
     cnf_2 = simplify_2(cnf_4, literals)
     cnf_3 = simplify_3(cnf_2)
 
-    all_literals, literals, not_literals = get_literals(cnf_3)
+    literals, not_literals = get_literals(cnf_3)
 
     cnf_1 = simplify_1(cnf_3, literals, not_literals)
 
@@ -123,9 +124,10 @@ def simplify(cnf):
 
 
 '''
-
+contained(): Returns True if "list1" is contained in "list2". This is done by turning each clause of both lists in sets
+and checking if all elements of a set are contained in the other set. Every pair is checked. If a clause from list1 is
+not in list2, the function returns False, otherwise it returns True.
 '''
-
 
 
 def contained(list1, list2):
@@ -153,7 +155,11 @@ def remove_duplicates(l):
 
 
 '''
-
+resolve(): Preforms a resolution between clauses i and j, returning the resolvent if the resolution is preformed.
+A boolean is also returned to determine if a resolution is preformed, since a resolution can be preformed and be equal
+to an empty clause (theorem is proven) but when two clauses cannot be resolved an empty clause is also returned (nothing 
+is appended to the resolvent list). When a resolvent is generated, the function returns it immediately since if several
+resolutions can be preformed between the same two clauses these are certainly tautologies.
 '''
 
 
