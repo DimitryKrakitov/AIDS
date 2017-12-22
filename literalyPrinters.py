@@ -1,8 +1,8 @@
-def printer(alameda):
-    surprise = "["
-    for Quenga in alameda:
-        surprise += " " + str(Quenga) + ";"
-    return surprise + "]"
+def printer(x):
+    p = "["
+    for y in x:
+        p += " " + str(y) + ";"
+    return p + "]"
 
 
 def sendhelp(b):
